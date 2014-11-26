@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Auxilo_WP.UcInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:csl="clr-namespace:Auxilo_WP"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="Info">
+        <StackPanel Orientation="Vertical" Height="440" VerticalAlignment="Top">
+
+            <!--Grid for squares -->
+            <Grid Height="372" Width="372" Margin="20,0,0,0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="0" Grid.Row="0">
+                    <Image Source="../../Images/Temperature_square.png" VerticalAlignment="Center" 
+                                           HorizontalAlignment="Right" Height="Auto" Width="Auto" />
+                    <TextBlock x:Name="TextBlockTemperature" Foreground="Black" FontSize="45" FontFamily="/Fonts/CAVEMAN_.TTF#caveman" 
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" Text="99˚C" />
+                </Grid>
+                <Grid Grid.Column="2" Grid.Row="0">
+                    <Image Source="../../Images/Humidity_square.png" VerticalAlignment="Center" 
+                                           HorizontalAlignment="Left" Height="Auto" Width="Auto" />
+                    <TextBlock x:Name="TextBlockHumidity" Foreground="Black" FontSize="45" FontFamily="/Fonts/CAVEMAN_.TTF#caveman" 
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" Text="45 %" />
+                </Grid>
+                <Grid Grid.Column="0" Grid.Row="2">
+                    <Image Source="../../Images/Pressure_square.png" VerticalAlignment="Center" 
+                                           HorizontalAlignment="Right" Height="Auto" Width="Auto" />
+                    <TextBlock x:Name="TextBlockPressure" Foreground="Black" FontSize="45" FontFamily="/Fonts/CAVEMAN_.TTF#caveman" 
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" Text="-" />
+                </Grid>
+                <Grid Grid.Column="2" Grid.Row="2">
+                    <Image Source="../../Images/CO2_square.png" VerticalAlignment="Center" 
+                                           HorizontalAlignment="Left" Height="Auto" Width="Auto" />
+                    <TextBlock x:Name="TextBlockCO2" Foreground="Black" FontSize="45" FontFamily="/Fonts/CAVEMAN_.TTF#caveman" 
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" Text="450" />
+                </Grid>
+
+            </Grid>
+
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="../../Images/Tab_Overview.png" VerticalAlignment="Bottom" Grid.Column="1"
+                                           HorizontalAlignment="Center" Height="Auto" Width="Auto" />
+                <Image Source="../../Images/Tab_Statistics.png" VerticalAlignment="Bottom" Grid.Column="3"
+                                           HorizontalAlignment="Center" Height="Auto" Width="Auto" />
+                <Image Source="../../Images/Tab_Archive.png" VerticalAlignment="Bottom" Grid.Column="5"
+                                           HorizontalAlignment="Center" Height="Auto" Width="Auto" />
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

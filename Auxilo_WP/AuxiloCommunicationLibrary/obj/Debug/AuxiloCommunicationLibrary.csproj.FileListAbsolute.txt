@@ -1,0 +1,8 @@
+C:\Users\Marko\Auxilo_WP\Auxilo_WP\AuxiloCommunicationLibrary\Bin\Debug\AuxiloCommunicationLibrary.dll
+C:\Users\Marko\Auxilo_WP\Auxilo_WP\AuxiloCommunicationLibrary\Bin\Debug\AuxiloCommunicationLibrary.pdb
+C:\Users\Marko\Auxilo_WP\Auxilo_WP\AuxiloCommunicationLibrary\obj\Debug\AuxiloCommunicationLibrary.dll
+C:\Users\Marko\Auxilo_WP\Auxilo_WP\AuxiloCommunicationLibrary\obj\Debug\AuxiloCommunicationLibrary.pdb
+D:\Spartacus\Koodit\Auxilo-wp\Auxilo_WP\AuxiloCommunicationLibrary\Bin\Debug\AuxiloCommunicationLibrary.dll
+D:\Spartacus\Koodit\Auxilo-wp\Auxilo_WP\AuxiloCommunicationLibrary\Bin\Debug\AuxiloCommunicationLibrary.pdb
+D:\Spartacus\Koodit\Auxilo-wp\Auxilo_WP\AuxiloCommunicationLibrary\obj\Debug\AuxiloCommunicationLibrary.dll
+D:\Spartacus\Koodit\Auxilo-wp\Auxilo_WP\AuxiloCommunicationLibrary\obj\Debug\AuxiloCommunicationLibrary.pdb

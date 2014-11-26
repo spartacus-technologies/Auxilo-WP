@@ -1,0 +1,114 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Auxilo_WP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:csl="clr-namespace:Auxilo_WP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
+    
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--d:DataContext="{d:DesignData SampleData/SampleNotifications.xaml}"-->
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Canvas Background="WhiteSmoke" />
+        <Image Source="Images/Background_home.png" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+
+            <!--HEADER-->
+            <Grid x:Name="Header" Grid.Row="0" Height="120" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+            
+                <Image Source="Images/Auxilo_title.png" Grid.Column="0"/>
+                <Image x:Name="ImageSettings" Source="Images/icon_settings.png" Grid.Column="2" Tap="ImageSettings_Tap"/>
+            </Grid>
+
+            <!--MID SECTION-->
+            <Grid x:Name="Body" Grid.Row="1">
+                <!--Panorama control-->
+                <controls:Panorama x:Name="PanoramaCarousel" VerticalAlignment="Top" Margin="0,0,10,0" Height="Auto" SelectionChanged="PanoramaCarousel_SelectionChanged">
+                    <!--Panorama item one-->
+                    <controls:PanoramaItem Header="Home" HeaderTemplate="{StaticResource PanoramaItemTemplate}">
+                        <csl:UcNotifications></csl:UcNotifications>
+                    </controls:PanoramaItem>
+ 
+                    <!--Panorama item two-->
+                    <controls:PanoramaItem Header="Devices" HeaderTemplate="{StaticResource PanoramaItemTemplate}">
+                        <csl:UcDevices></csl:UcDevices>
+                    </controls:PanoramaItem>
+
+                    <!--Panorama item three-->
+                    <controls:PanoramaItem Foreground="LimeGreen" Header="Info" HeaderTemplate="{StaticResource PanoramaItemTemplate}">
+                        <csl:UcInfo></csl:UcInfo>
+                    </controls:PanoramaItem>
+
+                    <!--Panorama item four-->
+                    <controls:PanoramaItem Foreground="LimeGreen" Header="Video" HeaderTemplate="{StaticResource PanoramaItemTemplate}">
+                        <Grid x:Name="TestGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Content="GetDevState" FontSize="24" Grid.Column="0" Grid.Row="0" Background="Aquamarine" VerticalAlignment="Top" Margin="20,0,0,0" Click="ButtonGetDeviceStatuses_Click"/>
+                            <TextBlock x:Name="TestTextBlock" Grid.Column="0" Grid.Row="1" FontSize="30" HorizontalAlignment="Center">Test</TextBlock>
+
+                            <TextBlock x:Name="TestTextBlock2" Grid.Column="1" Grid.Row="1" FontSize="30" HorizontalAlignment="Center">Test2</TextBlock>
+                        </Grid>
+                    </controls:PanoramaItem>
+
+                </controls:Panorama>
+            </Grid>
+
+            <!--FOOTER-->
+            <Grid x:Name="Footer" Grid.Row="2" VerticalAlignment="Bottom" Height="100" Margin="0,10,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <Image x:Name="ImageHome" Source="Images/navi_home_active.png" Grid.Column="1" Tap="ImageHome_Tap"/>
+                <Image x:Name="ImageDevices" Source="Images/navi_nexxa_inactive.png" Grid.Column="3" Tap="ImageDevices_Tap"/>
+                <Image x:Name="ImageInfo" Source="Images/navi_temp_inactive.png" Grid.Column="5" Tap="ImageInfo_Tap"/>
+                <Image x:Name="ImageVideo" Source="Images/navi_cam_inactive.png" Grid.Column="7" Tap="ImageVideo_Tap"/>
+            </Grid>
+                        
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>

@@ -1,0 +1,14 @@
+﻿<local:MainViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Auxilo_WP">
+
+    <local:MainViewModel.Devices>
+        <!--<local:ItemViewModel LineOne = "Lamp Balcony" LineTwo = ""/>
+        <local:ItemViewModel LineOne = "Lamp Living Room" LineTwo = "Room temperature raised to 24C degrees."/>
+        <local:ItemViewModel LineOne = "Heater" LineTwo = "Good morning! Did you sleep well?"/>
+        <local:ItemViewModel LineOne = "Stove" LineTwo = "Good night! How about a lullaby?"/>
+        <local:ItemViewModel LineOne = "Charger" LineTwo = "Temperature dropped to 20C degrees? Would you like to turn on the heater?"/>-->
+    </local:MainViewModel.Devices>
+
+</local:MainViewModel>

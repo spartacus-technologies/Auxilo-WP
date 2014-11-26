@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Auxilo_WP.UcDevices"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:csl="clr-namespace:Auxilo_WP"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="Devices">
+        <ListBox x:Name="ListBoxDevices" Margin="0,0,0,0" ItemsSource="{Binding Devices}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Source="Images/spartacus_plug.png" Margin="10,10,20,10"/>
+                        <TextBlock Grid.Column="1" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black" Text="{Binding DeviceName}" TextWrapping="Wrap" Margin="10,0,20,0"/>
+                        <csl:CustomSlideControl Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,168 @@
+//Change log:
+
+//29.1.2014:
+//Lisätty getStatus DeviceCommandiin. Kommentoitu kaikki messaget. -Eetu
+
+//Toimintailta 29.1.2014:
+/**
+* Lisätty 'receiverDeviceName' ja 'senderDeviceName' Message'een.
+* Lisätty uudet viestityypit: SensorDataList, QueryMessageList & QueryMessage,
+* DeviceCommand, DeviceStatus, deviceState, DeviceInfo
+*
+* Muuta: Speksattu uusiksi sekvenssikaavioita. Määritetty viestin rakenne ja tyypit (huom. uusi tyyppi).
+*
+**/
+
+//29.1.2014:
+//Added protobuf protocol definitions to own project. -Eetu
+//Changed java_package definition. -Eetu
+
+
+
+
+//Viestin rakenne:
+/*
+| Mess. lght = 4 tavua | Type = 4 tavua | ... message(max 512) ... |
+
+Tyypit: helloReq. = 0
+DeviceList = 0
+norm = 1
+acc = 10 (Note: lähetetään pelkkä header)
+heart beat (HB) acc = 11 (Serverin lähettämä viesti tilan selvittämiseksi. Vastataan takaisin heartbeatilla)
+(term = 1000 (Saa aikaan serverin poistamaan client roomista))
+*/
+
+package auxilo;
+
+option java_package = "protobuf";
+option java_outer_classname = "ProtobufMessages";
+
+//HelloRequest
+//Suunta: boksi -> serveri, mobiili -> serveri
+//Kuvaus:
+//Ensimmäinen viesti Socketin avauksen jälkeen clientin rekisteröimiseksi
+message HelloRequest
+{
+required string customerID = 1;
+required string deviceName = 2;
+required bool isBox = 3;
+}
+//Message
+//Suunta: boksi -> serveri, mobiili -> serveri
+//Kuvaus:
+//Runko kaikkien viestien välittamiseksi
+message Message
+{
+//Kohdelaitteen tunniste viestin vastaanottajan maarittelemiseksi: Kohdelaitteen ID, tai ALL.
+required string receiverDeviceName = 1; //Laitteen yksilöivä ID (boksi tai mobiili)
+required string senderDeviceName = 2; //Laitteen yksilöivä ID (boksi tai mobiili)
+optional SensDataList sensorDataList = 3; //Paluuviesti datan välittamiseksi TAI
+optional QueryMessageList qry = 4; //(Sensorin) tilan kyselyviesti
+optional DeviceCommand device_command = 5; // Laitteiden (esim nexa, webbikamera) ohjaamiseen
+optional DeviceStatus device_status = 6; // Palauttaa laitteen/laitteiden tilan
+}
+
+//DeviceList
+//Suunta: boksi -> mobiili
+//Kuvaus:
+//Lista järjestelmään liitetyistä laitteista:
+message DeviceList
+{
+repeated DeviceInfo deviceList = 1;
+}
+
+//DeviceInfo
+//Suunta: boksi -> mobiili
+//Kuvaus:
+//osa DeviceList -messagea. Sisältää tiedon boksiin kytketyista sensoreista/laitteista
+message DeviceInfo
+{
+required string boxID = 1;
+required string deviceID = 2;
+optional string description = 3;
+optional string aliasName = 4;
+required deviceType type = 5;
+}
+
+//QueryMessageList
+//Suunta: mobiili -> boksi
+//Kuvaus:
+//Anturidatan hakemiseen tarkoitettu lista
+message QueryMessageList{
+
+repeated QueryMessage query= 1;
+}
+
+//QueryMessage
+//Suunta: mobiili -> boksi
+//Kuvaus:
+//Anturidatan hakemiseen tarkoitettu QueryMessageList'in alkio,
+//joka määrittelelee halutun anturin ID:n ja historiatietojen pituuden
+message QueryMessage
+{
+required string sensorID = 1; //Anturin tai laitteen ID
+optional string latestDate = 2; //Päivämäärä, jonka jälkeiset arvot halutaan. Jos ei aseteta, palauttaa viimeisimmän. YYYY.MM.DD-hh:mm:ss
+}
+
+//SensorDataList
+//Suunta: boksi -> mobiili
+//Kuvaus:
+//Lista, jossa välitetään anturidataa (DataMessage).
+message SensDataList
+{
+repeated DataMessage sensorData = 1;
+}
+
+//DataMessage
+//Suunta: boksi -> mobiili
+//Kuvaus:
+//Varsinainen anturin tilasta kertova viesti:
+message DataMessage
+{
+required string hardwareID = 1; //Anturin, toimilaitteen yksilollinen ID
+required float data = 2; //Anturidata
+required string timeStamp = 3; // YYYY.MM.DD-hh:mm:ss
+}
+
+//deviceType
+//Suunta: -
+//Kuvaus:
+//enum -tyyppi. joka kertoo laitteen/anturin tyypin. Laajennetaan uusien tyyppien ilmaantuessa.
+enum deviceType
+{
+sensorTemp = 1;
+deviceNexa = 2;
+sensorPIR = 3;
+};
+
+//deviceState
+//Suunta: -
+//Kuvaus:
+//Laitteen tilasta kertova enum.
+enum deviceState
+{
+on = 1;
+off = 2;
+unknown = 3;
+};
+
+//DeviceCommand
+//Suunta: mobiili -> boksi
+//Kuvaus:
+//Viestityyppi laitteiden tilan muuttamiseksi tai tilan noutamiseksi //TODO repeated
+message DeviceCommand
+{
+required string deviceID = 1; //Toimilaitteen ID
+optional deviceState setStatus = 2; //Halutaanko muuttaa laitteen tilaa..
+optional bool getStatus = 3; //...vai halutaanko tiedustella sitä (arvo true)
+}
+
+//DeviceStatus
+//Suunta: boksi -> mobiili
+//Kuvaus:
+//Paluuviestin tyyppi laitteen tilan muuttamisen jälkeen
+message DeviceStatus
+{
+required string deviceID = 1; //Toimilaitteen ID
+required deviceState status = 2; //laitteen tila
+}
